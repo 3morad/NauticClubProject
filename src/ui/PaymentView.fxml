@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="ui.PaymentController">
+    <Label text="Manage Payments" style="-fx-font-size: 18px;"/>
+
+    <TableView fx:id="paymentTable">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="Amount" fx:id="amountColumn"/>
+            <TableColumn text="Method" fx:id="methodColumn"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <TextField fx:id="amountField" promptText="Amount"/>
+        <TextField fx:id="methodField" promptText="Payment Method"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="Add" onAction="#addPayment"/>
+        <Button text="Update" onAction="#updatePayment"/>
+        <Button text="Delete" onAction="#deletePayment"/>
+    </HBox>
+</VBox>

@@ -1,34 +1,43 @@
 package entities;
 
-import java.util.Date;
+import javafx.beans.property.*;
+
+import java.sql.Date;
 
 public class Ticket {
-    private int id;
-    private int eventId;
-    private int userId;
-    private Date issueDate;
+    private final IntegerProperty id;
+    private final IntegerProperty eventId;
+    private final IntegerProperty userId;
+    private final ObjectProperty<Date> issueDate;
 
     public Ticket(int id, int eventId, int userId, Date issueDate) {
-        this.id = id;
-        this.eventId = eventId;
-        this.userId = userId;
-        this.issueDate = issueDate;
+        this.id = new SimpleIntegerProperty(id);
+        this.eventId = new SimpleIntegerProperty(eventId);
+        this.userId = new SimpleIntegerProperty(userId);
+        this.issueDate = new SimpleObjectProperty<>(issueDate);
     }
 
-    // Getters
-    public int getId() { return id; }
-    public int getEventId() { return eventId; }
-    public int getUserId() { return userId; }
-    public Date getIssueDate() { return issueDate; }
+    // ✅ JavaFX Property Getters for TableView
+    public IntegerProperty idProperty() { return id; }
+    public IntegerProperty eventIdProperty() { return eventId; }
+    public IntegerProperty userIdProperty() { return userId; }
+    public ObjectProperty<Date> issueDateProperty() { return issueDate; }
 
-    // Setters
-    public void setId(int id) { this.id = id; }
-    public void setEventId(int eventId) { this.eventId = eventId; }
-    public void setUserId(int userId) { this.userId = userId; }
-    public void setIssueDate(Date issueDate) { this.issueDate = issueDate; }
+    // ✅ Standard Getters
+    public int getId() { return id.get(); }
+    public int getEventId() { return eventId.get(); }
+    public int getUserId() { return userId.get(); }
+    public Date getIssueDate() { return issueDate.get(); }
+
+    // ✅ Setters (If Needed)
+    public void setId(int id) { this.id.set(id); }
+    public void setEventId(int eventId) { this.eventId.set(eventId); }
+    public void setUserId(int userId) { this.userId.set(userId); }
+    public void setIssueDate(Date issueDate) { this.issueDate.set(issueDate); }
 
     @Override
     public String toString() {
-        return "Ticket {ID: " + id + ", Event ID: " + eventId + ", User ID: " + userId + ", Issue Date: " + issueDate + "}";
+        return "Ticket {ID: " + getId() + ", Event ID: " + getEventId() +
+                ", User ID: " + getUserId() + ", Issue Date: " + getIssueDate() + "}";
     }
 }

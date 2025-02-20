@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="ui.TicketController">
+    <Label text="Manage Tickets" style="-fx-font-size: 18px;"/>
+
+    <TableView fx:id="ticketTable">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="Event ID" fx:id="eventColumn"/>
+            <TableColumn text="User ID" fx:id="userColumn"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <TextField fx:id="eventField" promptText="Event ID"/>
+        <TextField fx:id="userField" promptText="User ID"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="Add" onAction="#addTicket"/>
+        <Button text="Update" onAction="#updateTicket"/>
+        <Button text="Delete" onAction="#deleteTicket"/>
+    </HBox>
+</VBox>

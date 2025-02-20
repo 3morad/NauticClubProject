@@ -7,12 +7,18 @@ import database.DatabaseConnection;
 import entities.Payment;
 import entities.Feedback;
 import entities.Ticket;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
-import java.util.Date;
 import java.util.List;
+import java.sql.Date;
 
-public class Main {
+public class Main extends Application {
+
     public static void main(String[] args) {
         // ✅ 1. Test Database Connection
         System.out.println("🔄 Testing Database Connection...");
@@ -35,7 +41,7 @@ public class Main {
 
         // ✅ 3. Test CRUD for Payments
         System.out.println("💰 Testing Payment CRUD Operations...");
-        Payment newPayment = new Payment(0, 1, 150.75, "Credit Card", new Date());
+        Payment newPayment = new Payment(0, 1, 150.75, "Credit Card", new Date(System.currentTimeMillis()));
         paymentDAO.addPayment(newPayment);
 
         List<Payment> payments = paymentDAO.getAllPayments();
@@ -61,7 +67,7 @@ public class Main {
 
         // ✅ 5. Test CRUD for Tickets
         System.out.println("\n🎟️ Testing Ticket CRUD Operations...");
-        Ticket newTicket = new Ticket(0, 4, 5, new Date());
+        Ticket newTicket = new Ticket(0, 4, 5, new Date(System.currentTimeMillis()));
         ticketDAO.addTicket(newTicket);
 
         List<Ticket> tickets = ticketDAO.getAllTickets();
@@ -69,9 +75,23 @@ public class Main {
             System.out.println(t);
         }
 
-        ticketDAO.updateTicket(1, new java.sql.Date(new Date().getTime()));  // ✅ Correct type (java.sql.Date)
+        ticketDAO.updateTicket(1, new java.sql.Date(System.currentTimeMillis()));
+        // ✅ Correct type (java.sql.Date)
         ticketDAO.deleteTicket(2); // Change ID as needed
 
         System.out.println("\n✅ ALL TESTS COMPLETED SUCCESSFULLY!");
+
+        // ✅ 6. Launch JavaFX UI
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/MainView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        primaryStage.setTitle("Nautic Club Management");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="ui.FeedbackController">
+    <Label text="Manage Feedback" style="-fx-font-size: 18px;"/>
+
+    <TableView fx:id="feedbackTable">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn"/>
+            <TableColumn text="User ID" fx:id="userColumn"/>
+            <TableColumn text="Event ID" fx:id="eventColumn"/>
+            <TableColumn text="Comment" fx:id="commentColumn"/>
+            <TableColumn text="Rating" fx:id="ratingColumn"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10">
+        <TextField fx:id="userField" promptText="User ID"/>
+        <TextField fx:id="eventField" promptText="Event ID"/>
+    </HBox>
+    <HBox spacing="10">
+        <TextField fx:id="commentField" promptText="Comment"/>
+        <TextField fx:id="ratingField" promptText="Rating (1-5)"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Button text="Add" onAction="#addFeedback"/>
+        <Button text="Update" onAction="#updateFeedback"/>
+        <Button text="Delete" onAction="#deleteFeedback"/>
+    </HBox>
+</VBox>

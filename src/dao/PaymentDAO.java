@@ -16,7 +16,7 @@ public class PaymentDAO {
             stmt.setInt(1, payment.getTicketId());
             stmt.setDouble(2, payment.getAmount());
             stmt.setString(3, payment.getMethod());
-            stmt.setDate(4, new java.sql.Date(payment.getPaymentDate().getTime()));
+            stmt.setDate(4, new java.sql.Date(payment.getDate().getTime()));
             stmt.executeUpdate();
             System.out.println("✅ Payment added successfully!");
         } catch (SQLException e) {
