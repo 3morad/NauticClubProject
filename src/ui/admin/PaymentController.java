@@ -1,4 +1,4 @@
-package ui;
+package ui.admin;
 
 import dao.PaymentDAO;
 import entities.Payment;

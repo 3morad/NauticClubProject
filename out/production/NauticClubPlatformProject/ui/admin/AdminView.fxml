@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<TabPane xmlns="http://javafx.com/javafx/8"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="ui.admin.AdminController">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <tabs>
+        <!-- Payments Tab -->
+        <Tab text="Payments">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <Label text="Manage Payments" style="-fx-font-size: 18px;"/>
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Amount:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="amountField" promptText="Enter amount"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Method:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="methodBox" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                </GridPane>
+
+                <HBox spacing="10">
+                    <Button text="Add Payment" onAction="#handleAddPayment"/>
+                    <Button text="Update Payment" onAction="#handleUpdatePayment"/>
+                    <Button text="Delete Payment" onAction="#handleDeletePayment"/>
+                </HBox>
+
+                <TableView fx:id="paymentTable" prefHeight="200">
+                    <columns>
+                        <TableColumn fx:id="paymentIdColumn" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="paymentAmountColumn" text="Amount" prefWidth="100"/>
+                        <TableColumn fx:id="paymentMethodColumn" text="Method" prefWidth="120"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Tickets Tab -->
+        <Tab text="Tickets">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <Label text="Manage Tickets" style="-fx-font-size: 18px;"/>
+                <GridPane hgap="10" vgap="10">
+                    <Label text="Event ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="eventField" promptText="Enter event ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="User ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="userField" promptText="Enter user ID"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <HBox spacing="10">
+                    <Button text="Add Ticket" onAction="#handleAddTicket"/>
+                    <Button text="Update Ticket" onAction="#handleUpdateTicket"/>
+                    <Button text="Delete Ticket" onAction="#handleDeleteTicket"/>
+                </HBox>
+
+                <TableView fx:id="ticketTable" prefHeight="200">
+                    <columns>
+                        <TableColumn fx:id="ticketIdColumn" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="ticketEventColumn" text="Event ID" prefWidth="100"/>
+                        <TableColumn fx:id="ticketUserColumn" text="User ID" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Feedback Tab -->
+        <Tab text="Feedback">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <Label text="Manage Feedback" style="-fx-font-size: 18px;"/>
+                <GridPane hgap="10" vgap="10">
+                    <Label text="User ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="feedbackUserField" promptText="Enter user ID"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Event ID:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="feedbackEventField" promptText="Enter event ID"
+                               GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Comment:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="commentField" promptText="Enter comment"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="Rating:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="ratingField" promptText="Enter rating"
+                               GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <HBox spacing="10">
+                    <Button text="Add Feedback" onAction="#handleAddFeedback"/>
+                    <Button text="Update Feedback" onAction="#handleUpdateFeedback"/>
+                    <Button text="Delete Feedback" onAction="#handleDeleteFeedback"/>
+                </HBox>
+
+                <TableView fx:id="feedbackTable" prefHeight="200">
+                    <columns>
+                        <TableColumn fx:id="feedbackIdColumn" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="feedbackUserColumn" text="User ID" prefWidth="80"/>
+                        <TableColumn fx:id="feedbackEventColumn" text="Event ID" prefWidth="80"/>
+                        <TableColumn fx:id="commentColumn" text="Comment" prefWidth="150"/>
+                        <TableColumn fx:id="ratingColumn" text="Rating" prefWidth="50"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </Tab>
+    </tabs>
+</TabPane>
+

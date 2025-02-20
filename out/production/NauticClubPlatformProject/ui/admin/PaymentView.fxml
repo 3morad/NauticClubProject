@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="ui.PaymentController">
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="ui.admin.PaymentController">
     <Label text="Manage Payments" style="-fx-font-size: 18px;"/>
 
     <TableView fx:id="paymentTable">

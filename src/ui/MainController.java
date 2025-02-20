@@ -1,16 +1,40 @@
 package ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainController {
-    @FXML private Button paymentsButton;
-    @FXML private Button ticketsButton;
-    @FXML private Button feedbackButton;
+    @FXML private ChoiceBox<String> roleSelection;
+    @FXML private Button loginButton;
+
+    @FXML
+    public void initialize() {
+        roleSelection.getItems().addAll("Admin", "Member", "Instructor");
+        roleSelection.setValue("Admin"); // Default selection
+    }
+
+    @FXML
+    private void handleLogin() {
+        String selectedRole = roleSelection.getValue();
+        if (selectedRole != null) {
+            switch (selectedRole) {
+                case "Admin":
+                    openNewWindow("/ui/admin/AdminView.fxml", "Admin Dashboard");
+                    break;
+                case "Member":
+                    openNewWindow("/ui/member/MemberView.fxml", "Member Dashboard");
+                    break;
+                case "Instructor":
+                    openNewWindow("/ui/instructor/InstructorView.fxml", "Instructor Dashboard");
+                    break;
+            }
+        }
+    }
 
     private void openNewWindow(String fxmlFile, String title) {
         try {
@@ -22,20 +46,5 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void openPaymentsView() {
-        openNewWindow("/ui/PaymentView.fxml", "Manage Payments");
-    }
-
-    @FXML
-    private void openTicketsView() {
-        openNewWindow("/ui/TicketView.fxml", "Manage Tickets");
-    }
-
-    @FXML
-    private void openFeedbackView() {
-        openNewWindow("/ui/FeedbackView.fxml", "Manage Feedback");
     }
 }

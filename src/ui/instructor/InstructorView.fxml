@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ui.instructor.InstructorController"
+      spacing="10">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <Label text="Instructor Dashboard" style="-fx-font-size: 18px;"/>
+
+    <!-- Paid Tickets Section -->
+    <TitledPane text="View Paid Tickets" expanded="true">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <TableView fx:id="paidTicketsTable" prefHeight="200">
+                <columns>
+                    <TableColumn fx:id="ticketIdColumn" text="Ticket ID" prefWidth="80"/>
+                    <TableColumn fx:id="amountColumn" text="Amount" prefWidth="100"/>
+                    <TableColumn fx:id="methodColumn" text="Payment Method" prefWidth="120"/>
+                    <TableColumn fx:id="dateColumn" text="Payment Date" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </TitledPane>
+
+    <!-- Event Participants Section -->
+    <TitledPane text="Event Participants" expanded="true">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <TableView fx:id="participantTable" prefHeight="200">
+                <columns>
+                    <TableColumn fx:id="participantIdColumn" text="User ID" prefWidth="80"/>
+                    <TableColumn fx:id="participantNameColumn" text="Name" prefWidth="150"/>
+                    <TableColumn fx:id="participantStatusColumn" text="Status" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </TitledPane>
+
+</VBox>
+

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ui.member.MemberController"
+      spacing="10">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <Label text="Member Dashboard" style="-fx-font-size: 18px;"/>
+
+    <!-- Payment Section -->
+    <TitledPane text="Make a Payment" expanded="true">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <GridPane hgap="10" vgap="10">
+                <Label text="Amount:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="amountField" promptText="Enter amount"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Method:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="methodBox" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <Button text="Confirm Payment" onAction="#handleConfirmPayment"/>
+            <Label fx:id="confirmationLabel" text="" style="-fx-text-fill: green;"/>
+        </VBox>
+    </TitledPane>
+
+    <!-- Ticket History Section -->
+    <TitledPane text="Your Ticket History" expanded="true">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <TableView fx:id="ticketTable" prefHeight="200">
+                <columns>
+                    <TableColumn fx:id="ticketIdColumn" text="Ticket ID" prefWidth="80"/>
+                    <TableColumn fx:id="eventColumn" text="Event" prefWidth="150"/>
+                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </TitledPane>
+
+    <!-- Feedback Section -->
+    <TitledPane text="Submit Feedback" expanded="true">
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <GridPane hgap="10" vgap="10">
+                <Label text="Event ID:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="eventIdField" promptText="Enter event ID"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Comment:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="commentField" promptText="Enter feedback"
+                           GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Rating:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="ratingField" promptText="Enter rating (1-5)"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <Button text="Submit Feedback" onAction="#handleSubmitFeedback"/>
+        </VBox>
+    </TitledPane>
+
+</VBox>

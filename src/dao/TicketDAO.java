@@ -71,4 +71,68 @@ public class TicketDAO {
             e.printStackTrace();
         }
     }
+    // READ: Get all tickets for a specific user
+    public List<Ticket> getAllTicketsForUser(int userId) {
+        List<Ticket> tickets = new ArrayList<>();
+        String sql = "SELECT * FROM tickets WHERE user_id = ? ORDER BY issue_date DESC";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Ticket ticket = new Ticket(
+                        rs.getInt("id"),
+                        rs.getInt("event_id"),
+                        rs.getInt("user_id"),
+                        rs.getDate("issue_date")
+                );
+                tickets.add(ticket);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tickets;
+    }
+    // ✅ READ: Get the most recent ticket for a user
+    public Ticket getLatestTicketForUser(int userId) {
+        String sql = "SELECT * FROM tickets WHERE user_id = ? ORDER BY issue_date DESC LIMIT 1";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new Ticket(
+                        rs.getInt("id"),
+                        rs.getInt("event_id"),
+                        rs.getInt("user_id"),
+                        rs.getDate("issue_date")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // ❌ Return null if no ticket found
+    }
+    // GET next available event for ticket assignment
+    public int getNextAvailableEvent() {
+        String sql = "SELECT id FROM events ORDER BY start_date ASC LIMIT 1";  // Change query if needed
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1; // No event found
+    }
+
 }
