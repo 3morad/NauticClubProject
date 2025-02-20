@@ -6,20 +6,25 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    // Database URL, user, and password
+    // Adjust if your DB name is not "pidev_db"
     private static final String URL = "jdbc:mysql://localhost:3306/pidev_db";
     private static final String USER = "root";
-    private static final String PASSWORD = "rayen346139";
+    private static final String PASS = "rayen346139";
 
-    private static Connection connection = null;
+    // Optionally, you can add "?serverTimezone=UTC" if you have timezone issues:
+    // private static final String URL = "jdbc:mysql://localhost:3306/pidev_db?serverTimezone=UTC";
 
-    private DBConnection() {
-        // private constructor to prevent instantiation
-    }
+    private static Connection connection;
 
-    public static Connection getConnection() throws SQLException {
-        if (connection == null || connection.isClosed()) {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+    public static Connection getConnection() {
+        if (connection == null) {
+            try {
+                connection = DriverManager.getConnection(URL, USER, PASS);
+                System.out.println("DB connection established successfully!");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Error connecting to the database", e);
+            }
         }
         return connection;
     }

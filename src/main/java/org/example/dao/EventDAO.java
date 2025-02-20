@@ -19,12 +19,15 @@ public class EventDAO {
             stmt.setString(1, event.getName());
             stmt.setString(2, event.getDescription());
             stmt.setDouble(3, event.getPrice());
+            // If event.getEventDate() is a LocalDate, use Date.valueOf(...)
             stmt.setDate(4, Date.valueOf(event.getEventDate()));
             stmt.setInt(5, event.getLocationId());
             stmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
+            // Optionally rethrow to let the UI see the error
+            // throw new RuntimeException(e);
         }
     }
 
@@ -42,6 +45,7 @@ public class EventDAO {
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getDouble("price"),
+                        // Convert SQL Date to LocalDate
                         rs.getDate("event_date").toLocalDate(),
                         rs.getInt("location_id")
                 );
@@ -49,6 +53,7 @@ public class EventDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            // throw new RuntimeException(e);
         }
         return events;
     }
@@ -59,20 +64,23 @@ public class EventDAO {
         String sql = "SELECT * FROM events WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                event = new Event(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("description"),
-                        rs.getDouble("price"),
-                        rs.getDate("event_date").toLocalDate(),
-                        rs.getInt("location_id")
-                );
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    event = new Event(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("description"),
+                            rs.getDouble("price"),
+                            rs.getDate("event_date").toLocalDate(),
+                            rs.getInt("location_id")
+                    );
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            // throw new RuntimeException(e);
         }
         return event;
     }
@@ -93,6 +101,7 @@ public class EventDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+            // throw new RuntimeException(e);
         }
     }
 
@@ -101,10 +110,13 @@ public class EventDAO {
         String sql = "DELETE FROM events WHERE id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, id);
             stmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
+            // throw new RuntimeException(e);
         }
     }
 
@@ -113,11 +125,14 @@ public class EventDAO {
         String sql = "INSERT IGNORE INTO event_instructors (event_id, instructor_id) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setInt(1, eventId);
             stmt.setInt(2, instructorId);
             stmt.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
+            // throw new RuntimeException(e);
         }
     }
 }
