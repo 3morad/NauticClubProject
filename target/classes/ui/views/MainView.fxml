@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ui.MainController"
+            prefHeight="400.0" prefWidth="600.0"
+            fx:id="anchorPane">
+
+    <children>
+        <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="600.0">
+            <top>
+                <Label text="Nautic Club Equipment Rental" style="-fx-font-size: 20px; -fx-padding: 10px;"/>
+            </top>
+            <center>
+                <VBox spacing="10" alignment="center" prefWidth="300" prefHeight="200">
+                    <Button text="Manage Equipment" onAction="#handleManageEquipment"/>
+                    <Button text="View Rentals" onAction="#handleViewRentals"/>
+                    <Button text="Exit" onAction="#handleExit"/>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+
+</AnchorPane>
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.RentalController">
+    <TableView fx:id="rentalTable" layoutX="10" layoutY="10" prefWidth="580" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="colRentalId" text="Rental ID" prefWidth="100" />
+            <TableColumn fx:id="colEquipment" text="Equipment" prefWidth="200" />
+            <TableColumn fx:id="colStartDate" text="Start Date" prefWidth="150" />
+            <TableColumn fx:id="colEndDate" text="End Date" prefWidth="150" />
+        </columns>
+    </TableView>
+    <ChoiceBox fx:id="choiceEquipment" layoutX="10" layoutY="420" prefWidth="200"/>
+    <DatePicker fx:id="dateStart" layoutX="220" layoutY="420"/>
+    <DatePicker fx:id="dateEnd" layoutX="220" layoutY="460"/>
+    <Button fx:id="btnAdd" text="Add Rental" onAction="#addRental" layoutX="10" layoutY="460" prefWidth="100"/>
+    <Button fx:id="btnDelete" text="Delete Rental" onAction="#deleteRental" layoutX="120" layoutY="460" prefWidth="100"/>
+    <Button fx:id="btnUpdate" text="Update Rental" onAction="#updateRental" layoutX="230" layoutY="460" prefWidth="100"/>
+
+    <!-- Fields to allow updating rental details -->
+    <TextField fx:id="txtRentalId" layoutX="10" layoutY="490" promptText="Rental ID" prefWidth="200"/>
+    <TextField fx:id="txtEquipment" layoutX="220" layoutY="490" promptText="Equipment Name" prefWidth="200"/>
+    <TextField fx:id="txtPrice" layoutX="10" layoutY="520" promptText="Price" prefWidth="200"/>
+</AnchorPane>

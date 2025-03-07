@@ -1,0 +1,15 @@
+ui\EquipmentController.class
+api\RentalBookingAPI.class
+dao\RentalDAO.class
+entities\Rental.class
+api\MaintenanceAnalyticsAPI.class
+database\MyDatabase.class
+api\DynamicPricingAPI.class
+entities\Equipment.class
+ui\MainController.class
+dao\EquipmentDAO.class
+ui\RentalController.class
+database\DatabaseConnection.class
+entities\User.class
+api\EquipmentManagementAPI.class
+ui\MainApp.class

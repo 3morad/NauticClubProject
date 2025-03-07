@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ui.EquipmentController"
+            fx:id="anchorPane">
+    <TableView fx:id="equipmentTable" layoutX="10" layoutY="10" prefWidth="580" prefHeight="400">
+        <columns>
+            <TableColumn fx:id="colName" text="Equipment Name" prefWidth="200" />
+            <TableColumn fx:id="colType" text="Equipment Type" prefWidth="200" />
+            <TableColumn fx:id="colStatus" text="Status" prefWidth="180" />
+            <TableColumn fx:id="colPrice" text="Price" prefWidth="180" />
+        </columns>
+    </TableView>
+    <TextField fx:id="txtName" layoutX="10" layoutY="420" prefWidth="150" promptText="Name" />
+    <TextField fx:id="txtType" layoutX="170" layoutY="420" prefWidth="150" promptText="Type" />
+    <TextField fx:id="txtPrice" layoutX="330" layoutY="420" prefWidth="150" promptText="Price" />
+    <Button fx:id="btnAdd" text="Add Equipment" onAction="#addEquipment" layoutX="10" layoutY="460" prefWidth="100"/>
+    <Button fx:id="btnDelete" text="Delete Equipment" onAction="#deleteEquipment" layoutX="120" layoutY="460" prefWidth="100"/>
+    <Button fx:id="btnUpdate" text="Update Equipment" onAction="#updateEquipment" layoutX="230" layoutY="460" prefWidth="100"/>
+</AnchorPane>
